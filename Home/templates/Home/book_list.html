@@ -1,0 +1,26 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% block title %}book list{% endblock %}
+{% block content %}
+    <h1>کتاب ها</h1>
+    <hr>
+    {% for book in books %}
+        <h2>
+        <a href="{% url 'Home:post_detail' book.id %}">{{ book.title }}</a>
+        </h2>
+        <p>{{ book.description | truncatewords:20 }}</p>
+        <h3>{{ book.author }}</h3>
+            {% if not book.images %}
+                <img src="{% static "image/logo1.jpg" %}">
+            {% else %}
+                <img style="width: 100px; height: 100px" src="{{ book.images.first.image.url }}" alt="{{ book.images.title }}">
+            {% endif %}
+        <h4>{{ book.date|jformat:'%Y/%m/%d (%H:%M)' }}</h4>
+        <div>
+        </div>
+        <h5>{{ book.author_post }}</h5>
+    {% endfor %}
+    <hr>
+    {% include "partials/pagination.html" with page=books %}
+{% endblock %}

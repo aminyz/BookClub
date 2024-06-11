@@ -1,0 +1,31 @@
+{% load static tailwind_tags %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="{% tailwind_css %}" />
+</head>
+
+<div class="bgSection flex desktop:bgLight gap-2 tablet:gap-4 laptop:gap-8 h-[200px] tablet:h-[240px] laptop:h-[280px] desktop:h-[320px] overflow-x-scroll mt-16">
+            <!-- books -->
+    {% for post in l_posts %}
+            <div class="flex flex-col items-center min-w-[120px] tabbile:min-w-[140px] tablet:min-w-[160px] laptop:min-w-[180px] desktop:min-w-[200px] h-full bg-[#8100FF] bg-opacity-50 overflow-hidden">
+                {% if not post.images %}
+                    <img src="{% static "image/کتابخانه نیمه شب.jpg"%}" alt="کتابخانه نیمه شب" class="h-[60%]">
+                {% else %}
+                    <img src="{{ post.images.first.image.url }}" alt="{{ post.images.title }}" class="h-[60%]">
+                {% endif %}
+              <div class="flex flex-col text-white mt-4">
+                <a href="{% url "Home:post_detail" post.id %}">
+                    <span class="font-iransansB text-xl">{{ post.title }}</span>
+                </a>
+                <span class="font-vazir text-[16px]">{{ post.author }}</span>
+                <div class="flex font-iransansB text-[#FFB800]">
+                  <img src="{% static "svg/star.svg" %}" alt="star">
+                  <span class="mr-1">4.7</span>
+                </div>
+                <p class="font-iransans text-sm">{{ post.description }}</p>
+              </div>
+    </div>
+    {% endfor %}
+</div>

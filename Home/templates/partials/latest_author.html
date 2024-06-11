@@ -1,0 +1,18 @@
+{% load static tailwind_tags %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="{% tailwind_css %}"/>
+</head>
+<div class="bgSection desktop:bgLight flex justify-center gap-2 tablet:gap-4 laptop:gap-8 flex-wrap mt-16">
+    {% for author in l_authors %}
+        <a href="{% url "Home:author_detail" author.id %}">
+        {% if not author.image %}
+            <img class="w-[100px] tablet:w-[150px] laptop:w-[200px] desktop:w-[240px]" src="{% static "image/logo1.jpg" %}" alt="">
+        {% else %}
+            <img class="w-[100px] tablet:w-[150px] laptop:w-[200px] desktop:w-[240px]" src="{{ author.image.url }}" alt="">
+        {% endif %}
+        </a>
+    {% endfor %}
+</div>

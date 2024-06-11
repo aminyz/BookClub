@@ -1,0 +1,67 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--================ REMIXICONS ==================-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+
+    <link rel="stylesheet" href="{% static "css/register.css" %}">
+    <title>login & register</title>
+</head>
+<body>
+    <div class="login">
+        <img src="{% static "image/1.jpg" %}" alt="login image" class="login__img">
+
+        <form method="post" action="" class="login__form">
+            {% csrf_token %}
+            <h1 class="login__title">ثبت نام</h1>
+
+            <div class="login__content">
+                <div class="login__box">
+                    <i class="ri-phone-fill login__icon"></i>
+
+                    <div class="login__box-input">
+                        <input type="text" name="username" required class="login__input" placeholder=" ">
+                        <label for="" class="login__label">نام کابری </label>
+                    </div>
+                </div>
+
+                <div class="login__box">
+                    <i class="ri-lock-2-fill login__icon"></i>
+
+                    <div class="login__box-input">
+                        <input type="password" name="password1" required class="login__input" id="login-pass" placeholder=" ">
+                        <label for="" class="login__label">رمز عبور</label>
+                        <i class="ri-eye-off-fill login__eye" id="login-eye"></i>
+                    </div>
+                </div>
+
+                <div class="login__box">
+                    <i class="ri-lock-2-fill login__icon"></i>
+
+                    <div class="login__box-input">
+                        <input type="password" name="password2" required class="login__input" id="login-pass" placeholder=" ">
+                        <label for="" class="login__label">تکرار رمز عبور</label>
+                        <i class="ri-eye-off-fill login__eye" id="login-eye"></i>
+                    </div>
+                </div>
+            </div>
+
+            <input class="login__button" type="submit" value="ثبت نام">
+
+            <p class="login__register">
+                  قبلا ثبت نام کرده اید ؟ <a href="{% url 'Home:login' %}"><b><big>ورود به حساب</big></b></a>
+            </p>
+        </form>
+    </div>
+
+
+       <!--=================MAIN JS===================-->
+       <script src="{% static 'js/register.js' %}"></script>
+</body>
+</html>

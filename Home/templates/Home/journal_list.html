@@ -1,0 +1,26 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% block title %}journal list{% endblock %}
+{% block content %}
+    <h1>مجلات</h1>
+    <hr>
+    {% for journal in journals %}
+        <h2>
+        <a href="{% url 'Home:post_detail' journal.id %}">{{ journal.title }}</a>
+        </h2>
+        <p>{{ journal.description | truncatewords:20 }}</p>
+        <h3>{{ journal.author }}</h3>
+            {% if not journal.images %}
+                <img src="{% static "image/logo1.jpg" %}">
+            {% else %}
+                <img style="width: 100px; height: 100px" src="{{ journal.images.first.image.url }}" alt="{{ journal.images.title }}">
+            {% endif %}
+        <h4>{{ journal.date|jformat:'%Y/%m/%d (%H:%M)' }}</h4>
+        <div>
+        </div>
+        <h5>{{ journal.author_post }}</h5>
+    {% endfor %}
+    <hr>
+    {% include "partials/pagination.html" with page=journals%}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% block title %}author detail{% endblock %}
+
+{% block content %}
+    <h1>{{ author.name }}</h1>
+    <p>{{ author.description|linebreaks }}</p>
+    <h2>{{ author.age }}</h2>
+    {% if not author.image %}
+        <img style="width: 100px; height: 100px" src="{% static "image/logo1.jpg" %}">
+    {% else %}
+        <img style="width: 100px; height: 100px" src="{{ author.image.url }}">
+    {% endif %}
+{% endblock %}

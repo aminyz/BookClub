@@ -1,0 +1,49 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load ratings %}
+{% load jformat %}
+{% block title %}post detail{% endblock %}
+{% block content %}
+<h2>
+    {{ post.title }}
+</h2>
+    <p>{{ post.description | linebreaks}}</p>
+    <h3>نویسنده :{{ post.author }}</h3>
+    <h4>{{ post.date|jformat:'%Y/%m/%d (%H:%M)' }}</h4>
+    <hr>
+    <h5 dir="ltr">{{ post.author_post }}</h5>
+    <hr>
+    {% if not post.images %}
+        <img style="width: 100px; height: 100px" src="{% static "image/logo1.jpg" %}">
+    {% else %}
+        {% for img in post.images.all %}
+            <img style="width: 100px; height: 100px" src="{{ img.image.url }}" alt="{{ img.title }}">
+        {% endfor %}
+    {% endif %}
+    <div>
+    {% with comments.count as cm_count %}
+    {{ cm_count }}کامنت
+    </div>
+
+    <div>
+
+
+    {% for cm in comments %}
+        {{ cm.description|linebreaks }}
+        <br>
+        {{ cm.name }}
+    {% empty %}
+        کامنتی وجود ندارد.
+    {% endfor %}
+    </div>
+    {% endwith %}
+
+    {% ratings post %}
+
+    <form method="post" action="{% url 'Home:post_comment' post.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="افزودن کامنت">
+    </form>
+    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+{% endblock %}

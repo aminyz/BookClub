@@ -1,0 +1,15 @@
+{% load static tailwind_tags %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="{% tailwind_css %}" />
+</head>
+<div style="">
+    {% if page.has_previous %}
+    <a href="?page={{ page.previous_page_number }}">قبلی</a>
+    {% endif %}
+    صفحه {{ page.number }} از {{ page.paginator.num_pages }}
+    {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}">بعدی</a>
+    {% endif %}
+</div>

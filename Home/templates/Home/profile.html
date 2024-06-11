@@ -1,0 +1,17 @@
+{% extends 'parent/base.html' %}
+{% load Home_tags %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+    <h1>پنل کاربری</h1>
+    <p>لطفا اطلاعات خود را کامل کنید</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ account_form.as_p }}
+            {{ user_form.as_p }}
+            <input type="submit" value="ذخیره">
+        </form>
+    <a href="{% url "Home:logout" %}">خروج</a>
+    <hr>
+    <a href="{% url 'Home:ticket' %}">تیکت</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% block title %}post list{% endblock %}
+{% block content %}
+    <h1>لیست آثار</h1>
+    <hr>
+    {% for post in posts %}
+        <h2>
+        <a href="{% url 'Home:post_detail' post.id %}">{{ post.title }}</a>
+        </h2>
+        <p>{{ post.description | truncatewords:20 }}</p>
+        <h3>{{ post.author }}</h3>
+        <h4>{{ post.date|jformat:'%Y/%m/%d (%H:%M)' }}</h4>
+        <div>
+        {% if not post.images %}
+            <img src="{% static "image/logo1.jpg" %}">
+        {% else %}
+            <img style="width: 100px; height: 100px" src="{{ post.images.first.image.url }}" alt="{{ post.images.title }}">
+        {% endif %}    
+        
+        </div>
+        <h5>{{ post.author_post }}</h5>
+    {% endfor %}
+    <hr>
+    {% include "partials/pagination.html" with page=posts %}
+{% endblock %}

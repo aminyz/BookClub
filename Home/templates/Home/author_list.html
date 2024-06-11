@@ -1,0 +1,21 @@
+{% extends "parent/base.html" %}
+{% load static %}
+{% block title %}
+	author list
+{% endblock %}
+{% block content %}
+    <h1>نویسندگان و شاعران</h1>
+    <hr>
+    {% for author in authors %}
+        <a href="{% url "Home:author_detail" author.id %}">{{ author.name }}</a>
+        <p>{{ author.description |truncatewords:20}}</p>
+        {% if not author.image %}
+            <img style="width: 100px; height: 100px" src="{% static "image/logo1.jpg" %}">
+        {% else %}
+            <img style="width: 100px; height: 100px" src="{{ author.image.url }}">
+        {% endif %}
+        
+        <hr>
+    {% endfor %}
+    {% include "partials/pagination.html" with page=authors %}
+{% endblock %}

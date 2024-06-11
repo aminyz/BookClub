@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    @font-face {
+        font-family: 'vandaMD';
+        src: url(Home/static/font/Vanda-Medium.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: 'minecraft';
+        src: url(Home/static/font/minecraft.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: 'iransans';
+        src: url(Home/static/font/IRANSansX-Regular.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: 'iransansB';
+        src: url(Home/static/font/IRANSansX-Bold.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: 'iransansThin';
+        src: url(Home/static/font/IRANSansX-Thin.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: 'vazir';
+        src: url(Home/static/font/Vazir.ttf) format("truetype");
+    }
+    @font-face {
+        font-family: 'vazirB';
+        src: url(Home/static/font/Vazir-Bold.ttf) format("truetype");
+    }
+}
+
+@layer components{
+    .infobox{
+        @apply w-[75px] tablet:w-[75px] laptop:w-[100px] desktop:w-[200px] h-[75px] tablet:h-[75px] laptop:h-[100px] desktop:h-[200px];
+    }
+}
+
+@layer utilities{
+    .rightHidden{
+        right: -100vw;
+    }
+    .bgHead{
+        background-image: url("Home/static/img/bgHead.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .bgSection{
+        background-image: url("Home/static/img/bgSection.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .bgLight{
+        background-image: url("Home/static/img/bgLight.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .bgBook{
+      background-image: url("Home/static/img/books/war and peace - cover.png");
+      background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .buttonGradient{
+        background: rgb(96,64,132);
+        background: linear-gradient(90deg, rgba(96,64,132,1) 0%, rgba(72,48,127,0.5) 100%);
+    }
+
+    .paddtopleft{
+      margin-top: calc(0px);
+      margin-left: -50vw;
+    }
+
+    .bgEvent{
+      -webkit-box-shadow: 0 0 16px -2px rgba(0,184,85,1);
+      -moz-box-shadow: 0 0 16px -2px rgba(0,184,85,1);
+      box-shadow: 0 0 16px -2px rgba(0,184,85,1);
+    }
+
+    /* infinite scroll text */
+      .scroll {
+        white-space: nowrap;
+        margin: 0 2em;
+      }
+
+      .scroll div {
+        display: flex;
+        gap: 2em;
+      }
+
+      .scroll p {
+        font-size: 16px;
+        color: white;
+        margin-bottom: 0;
+        line-height: 16px;
+      }
+
+      .RightToLeft {
+        animation: RightToLeft 10s infinite linear;
+      }
+
+      @keyframes  RightToLeft {
+        from {
+          transform: translateX(100%);
+        }
+        to {
+          transform: translateX(-100%);
+        }
+        from {
+            transform: translateX(100%);
+          }
+          to {
+            transform: translateX(-100%);
+          }
+      }
+}

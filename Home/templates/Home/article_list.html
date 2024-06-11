@@ -1,0 +1,26 @@
+{% extends 'parent/base.html' %}
+{% load static %}
+{% load jformat %}
+{% block title %}article list{% endblock %}
+{% block content %}
+    <h1>مقالات</h1>
+    <hr>
+    {% for article in articles %}
+        <h2>
+        <a href="{% url 'Home:post_detail' article.id %}">{{ article.title }}</a>
+        </h2>
+        <p>{{ article.description | truncatewords:20 }}</p>
+        <h3>{{ article.author }}</h3>
+            {% if not article.images %}
+                <img src="{% static "image/logo1.jpg" %}">
+            {% else %}
+                <img style="width: 100px; height: 100px" src="{{ article.images.first.image.url }}" alt="{{ article.images.title }}">
+            {% endif %}
+        <h4>{{ article.date|jformat:'%Y/%m/%d (%H:%M)' }}</h4>
+        <div>
+        </div>
+        <h5>{{ article.author_post }}</h5>
+    {% endfor %}
+    <hr>
+    {% include "partials/pagination.html" with page=articles %}
+{% endblock %}
